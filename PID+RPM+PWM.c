@@ -20,7 +20,7 @@ int digito[3] = {0,0,0}; // vetor para armazenar os 3 digitos do display da simu
 void delay(void);
 void ex0_isr (void) interrupt 0
 {
-     contador++;   // conta quantas vezes a interupção é chamada, ou seja, quantas rotações o motor está fazendo
+     contador++;   // conta quantas vezes a interupÃ§Ã£o Ã© chamada, ou seja, quantas rotaÃ§Ãµes o motor estÃ¡ fazendo
 }
 
 void passaDigito(void);
@@ -31,10 +31,10 @@ void main(void)
    TR0 = 1; // liga o timer 0
 
    while (1){
-         IT0 = 1; // ativa interrupção sensível a borda
-         EX0 = 1; // ativa interrupção externa
-         EA = 1; //ativa interupções
-				for(i=0; i < 10; i++){ // repetição para o timer, 500ms, é o tempo necessário para pegar as amostras do motor
+         IT0 = 1; // ativa interrupÃ§Ã£o sensÃ­vel a borda
+         EX0 = 1; // ativa interrupÃ§Ã£o externa
+         EA = 1; //ativa interupÃ§Ãµes
+				for(i=0; i < 10; i++){ // repetiÃ§Ã£o para o timer, 500ms, Ã© o tempo necessÃ¡rio para pegar as amostras do motor
 					TH0 = 0x3C;
 					TL0 = 0x0AF; // carrega o timer 0 com 50ms
 					TR0 = 1;
@@ -45,7 +45,7 @@ void main(void)
          EX0 = 0;
          passaDigito(); // funcao para enviar os valores para os displays
 				 contador = 0;
-					//seleciona o sentido de rotação do motor
+					//seleciona o sentido de rotaÃ§Ã£o do motor
 					if(P0_0 == 1){
 						 P3_0 = 1;
 						 P3_1 = 0;
@@ -67,11 +67,11 @@ void main(void)
  
  void passaDigito(){
 			int aux;
-	 // cada rotação completa do motor envia 30 pulsos de interrupção
+	 // cada rotaÃ§Ã£o completa do motor envia 30 pulsos de interrupÃ§Ã£o
 	 // contador tem armazenado a quantidade de pulsos em 500ms
-	 // se para 1 pulso por rotação em 1s fazemos *60 o contador
-	 // para 30 pulsos por rotação em 0,5s temos *4 o contador
-	 // o .35 é fator de atraso das instruções
+	 // se para 1 pulso por rotaÃ§Ã£o em 1s fazemos *60 o contador
+	 // para 30 pulsos por rotaÃ§Ã£o em 0,5s temos *4 o contador
+	 // o .35 Ã© fator de atraso das instruÃ§Ãµes
 			contador = contador * 4.35;
 	 // pega os valores de cada digito do contador
 		  if(contador>=100){
